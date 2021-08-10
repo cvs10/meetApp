@@ -70,6 +70,7 @@
     }
 
     .content {
+      width: 40vw;
       height: 4rem;
     }
   </style>
