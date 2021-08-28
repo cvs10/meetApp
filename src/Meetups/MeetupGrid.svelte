@@ -30,7 +30,7 @@
         adress={meetup.adress}
         description={meetup.description}
         imageUrl={meetup.imageUrl}
-        email={meetup.contactEmail}
+        email={meetup.email}
         isFav={meetup.isFavorite}
         on:toggle-favorite/>
         {/each}

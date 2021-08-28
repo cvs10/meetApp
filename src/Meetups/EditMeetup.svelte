@@ -35,7 +35,7 @@
 </style>
 
 
-<form on:submit|preventDefault={() => dispatch('save', {})}>
+<form on:submit|preventDefault={submitForm}>
     <TextInput id="title" label="Title" type="text" value={title} on:input={event => (title = event.target.value)} />
     <TextInput id="subtitle" label="Subtitle" type="text" value={subtitle} on:input={event => (subtitle = event.target.value)} />
     <TextInput id="adress" label="Adress" type="text" value={adress} on:input={event => (adress = event.target.value)} />
@@ -45,5 +45,5 @@
 
 
 
-    <Button type="submit" caption="Save" />
+    <Button type="submit">Save</Button>
 </form>

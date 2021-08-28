@@ -16,7 +16,7 @@
             description: "Whole month of intensive coding",
             imageUrl: "https://picsum.photos/200/300",
             adress: 'Randomstraat 55, 6005 VX Heeze',
-            contactEmail: 'random@gmail.com',
+            email: 'random@gmail.com',
             isFavorite: false,
         },
         {
@@ -26,24 +26,26 @@
             description: "Fast meetup about code verification",
             imageUrl: "https://picsum.photos/200/300",
             adress: 'Randomstraat 22, 5005 PP Budel',
-            contactEmail: 'random2@gmail.com',
+            email: 'random2@gmail.com',
             isFavorite: false,
         }
     ];
 
-    let editMode = null;
+
+    let editMode;
     
-    function addMeetup(){
+    function addMeetup(event){
         const newMeetup = {
             id: Math.random().toString(),
-            title: title,
-            subtitle: subtitle,
-            description: description,
-            imageUrl: imageUrl,
-            contactEmail: email,
-            adress: adress
-        }
-        meetups = [newMeetup,...meetups]
+            title: event.detail.title,
+            subtitle: event.detail.subtitle,
+            description: event.detail.description,
+            imageUrl: event.detail.imageUrl,
+            email: event.detail.email,
+            adress: event.detail.adress
+        };
+        meetups = [newMeetup, ...meetups];
+        editMode = null;
     };
 
         function toggleFavorite(event){
@@ -61,14 +63,21 @@
     main{
         margin-top: 5rem;
     }
+
+    .meetup_btn {
+        margin: 1rem;
+    }
 </style>
 
 <Header />
     
 <main>
-    <Button caption="New Meetup" on:click="{() => (editMode = 'add')}"/>
+    <div class="meetup_btn">
+    <Button on:click="{() => (editMode = 'add')}">New Meetup</Button>
+    </div>
         {#if editMode === 'add'}
-    <EditMeetup />
+    
+    <EditMeetup on:save="{addMeetup}"/>
         {/if}
     <MeetupGrid meetups={meetups} on:toggle-favorite={toggleFavorite}/>
 </main>
